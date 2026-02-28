@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Amani AlJarida | One-Page Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        nav {
+            background: #222;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #fff;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1, h2 {
+            color: #222;
+        }
+
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .images img {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .images img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid #fff;
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* ----------------------- */
+
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            background: #00bcd4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #0097a7;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+            display: block;
+            margin: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#video">Video</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home">
+        <h1>Welcome to Amani AlJarida’s Website</h1>
+        <p>
+            This is a simple one-page website created as a student project.
+            It demonstrates basic HTML elements including navigation,
+            images, video, forms, and a footer — all in a clean, modern layout.
+        </p>
+    </section>
+
+    <section id="gallery">
+        <h2>Image Gallery</h2>
+        <div class="images">
+            <img src="https://cdn.pixabay.com/photo/2020/06/21/12/37/deer-5324645_1280.jpg" alt="Sample image 1">
+            <img src="https://cdn.pixabay.com/photo/2025/12/11/17/23/animals-10008941_1280.jpg" alt="Sample image 2">
+            <img src="https://cdn.pixabay.com/photo/2020/06/21/12/37/deer-5324645_1280.jpg" alt="Sample image 3">
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Image">
+    </div>
+
+    <section id="video">
+        <h2>Featured Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/m4_9TFeMfJE?si=ugyi0TOUFl3SVEf3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Amani AlJarida. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Select Lightbox elements
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.close-lightbox');
+        const galleryImages = document.querySelectorAll('.images img');
+
+        // Open Lightbox
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = image.src;
+            });
+        });
+
+        // Close Lightbox when clicking 'X'
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        // Close Lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
